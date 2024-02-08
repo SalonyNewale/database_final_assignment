@@ -1,0 +1,123 @@
+
+
+1.select * from studentss;
++--------+-----+----------+-----------+------+------------+
+| name   | age | course   | city      | year | percentage |
++--------+-----+----------+-----------+------+------------+
+| Achal  |  20 | Maths    | ahemdabad | 2002 |         90 |
+| Surbhi |  21 | Java     | pune      | 2003 |         80 |
+| Gauri  |  22 | OOPs     | mumbai    | 2004 |         70 |
+| Ganesh |  23 | Computer | amravati  | 2005 |         60 |
+| Arun   |  25 | Maths    | ahemdabad | 2002 |         90 |
+| Priya  |  26 | OOPs     | mumbai    | 2004 |         70 |
+| Arti   |  27 | python   | wardha    | 2005 |         60 |
+| Shruti |  30 | Java     | pune      | 2003 |         80 |
++--------+-----+----------+-----------+------+------------+
+8 rows in set (0.00 sec)
+ 
+
+6.
+ select * from studentss
+    -> where city ="ahemdabad" and name like "A%";
++-------+-----+--------+-----------+------+------------+
+| name  | age | course | city      | year | percentage |
++-------+-----+--------+-----------+------+------------+
+| Achal |  20 | Maths  | ahemdabad | 2002 |         90 |
+| Arun  |  25 | Maths  | ahemdabad | 2002 |         90 |
++-------+-----+--------+-----------+------+------------+
+2 rows in set (0.01 sec)
+
+2. select * from teacherss;
++------+------+--------+-----------+----------------+--------------------+--------+
+| name | age  | course | city      | subject_expert | year_of_experience | salary |
++------+------+--------+-----------+----------------+--------------------+--------+
+| Abc  |   30 | Maths  | pune      | java           |                  3 |   1000 |
+| DEF  |   32 | OOPs   | pune      | python         |                  3 |   2000 |
+| GHI  |   35 | Maths  | pune      | java           |                  4 |   3000 |
+| JKL  |   37 | python | mumbai    | Computer       |                  5 |  20000 |
+| KLM  |   30 | Java   | ahemdabad | java           |                  2 |   1000 |
+| SDF  |   36 | python | wardha    | English        |                  7 |   5000 |
+| HJU  |   33 | Maths  | pune      | java           |                  1 |   2000 |
+| FRG  |   39 | java   | mumbai    | OOPs           |                  9 |   4000 |
++------+------+--------+-----------+----------------+--------------------+--------+
+8 rows in set (0.00 sec)
+
+5. select *
+    -> from studentss
+    -> where city= "pune" union select * from studentss where city="mumbai";
++--------+-----+--------+--------+------+------------+
+| name   | age | course | city   | year | percentage |
++--------+-----+--------+--------+------+------------+
+| Surbhi |  21 | Java   | pune   | 2003 |         80 |
+| Shruti |  30 | Java   | pune   | 2003 |         80 |
+| Gauri  |  22 | OOPs   | mumbai | 2004 |         70 |
+| Priya  |  26 | OOPs   | mumbai | 2004 |         70 |
++--------+-----+--------+--------+------+------------+
+4 rows in set (0.01 sec)
+
+7.select * from teacherss
+    -> where year_of_experience>=4;
++------+------+--------+--------+----------------+--------------------+--------+
+| name | age  | course | city   | subject_expert | year_of_experience | salary |
++------+------+--------+--------+----------------+--------------------+--------+
+| GHI  |   35 | Maths  | pune   | java           |                  4 |   3000 |
+| JKL  |   37 | python | mumbai | Computer       |                  5 |  20000 |
+| SDF  |   36 | python | wardha | English        |                  7 |   5000 |
+| FRG  |   39 | java   | mumbai | OOPs           |                  9 |   4000 |
++------+------+--------+--------+----------------+--------------------+--------+
+4 rows in set (0.00 sec)
+
+3.
+alter table studentss
+    -> rename column course to subject;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc studentss;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| name       | varchar(100) | YES  |     | NULL    |       |
+| age        | int          | NO   | PRI | NULL    |       |
+| subject    | varchar(100) | YES  |     | NULL    |       |
+| city       | varchar(100) | YES  |     | NULL    |       |
+| year       | varchar(100) | YES  |     | NULL    |       |
+| percentage | int          | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+6 rows in set (0.05 sec)
+
+
+4.create table bkpu_studentss
+    -> select * from studentss;
+Query OK, 8 rows affected (0.04 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+create table bkpu_teacherss
+    -> select * from teacherss;
+Query OK, 8 rows affected (0.03 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+ desc bkpu_studentss;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| name       | varchar(100) | YES  |     | NULL    |       |
+| age        | int          | NO   |     | NULL    |       |
+| subject    | varchar(100) | YES  |     | NULL    |       |
+| city       | varchar(100) | YES  |     | NULL    |       |
+| year       | varchar(100) | YES  |     | NULL    |       |
+| percentage | int          | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+ desc bkpu_teacherss;
++--------------------+--------------+------+-----+---------+-------+
+| Field              | Type         | Null | Key | Default | Extra |
++--------------------+--------------+------+-----+---------+-------+
+| name               | varchar(100) | YES  |     | NULL    |       |
+| age                | int          | YES  |     | NULL    |       |
+| course             | varchar(100) | YES  |     | NULL    |       |
+| city               | varchar(100) | YES  |     | NULL    |       |
+| subject_expert     | varchar(100) | YES  |     | NULL    |       |
+| year_of_experience | int          | YES  |     | NULL    |       |
+| salary             | int          | YES  |     | NULL    |       |
++--------------------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
